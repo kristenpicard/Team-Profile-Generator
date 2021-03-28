@@ -6,11 +6,11 @@ const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
 
 // Uses inquirer to prompt the user with starting manager ?s
-// managerPrompt(() => {
+// WANTED TO MAKE OWN FUNCTION BUT KEPT SAYING NOT DEFINED? managerPrompt(() => {
 inquirer
   .prompt([
     {
-      message: "Let's Build Your Team Profile!",
+      message: "Let's Build Your Team Profile! (Press Enter to begin)",
       name: "mssg",
     },
     {
@@ -46,116 +46,148 @@ inquirer
         return true;
       },
     },
+    {
+      type: "input",
+      message: "Enter the Manager's ID #:",
+      name: "id",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter a valid ID number");
+        }
+        return true;
+      },
+    },
   ])
 
   .then((data) => {
-    const name = data.name; // unsure what this hw will call
+    const name = data.name;
+    const email = data.email;
+    const onumber = data.onumber;
+    const id = data.id;
 
-    const member = new Manager(name);
+    const member = new Manager(name, email, onumber, id);
     console.log(member);
   });
 // });
 
-// This is the engineer prompt
+// CURRENTLY PROMPTING AT SAME TIME AS MANAGER This is the engineer prompt
 // engineerPrompt(() => {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         message: "Enter the Engineer's name: ",
-//         name: "name",
-//         validate: function (input) {
-//           if (input == " ") {
-//             console.log("Please enter a valid name");
-//           }
-//           return true;
-//         },
-//       },
-//       {
-//         type: "input",
-//         message: "Enter the Engineer's email address: ",
-//         name: "email",
-//         validate: function (input) {
-//           if (input == " ") {
-//             console.log("Please enter valid email");
-//           }
-//           return true;
-//         },
-//       },
-//       {
-//         type: "input",
-//         message: "Enter the Engineer's Github username:",
-//         name: "github",
-//         validate: function (input) {
-//           if (input == " ") {
-//             console.log("Please enter a valid username");
-//           }
-//           return true;
-//         },
-//       },
-//     ])
+inquirer
+  .prompt([
+    {
+      type: "input",
+      message: "Enter the Engineer's name: ",
+      name: "name",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter a valid name");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "Enter the Engineer's email address: ",
+      name: "email",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter valid email");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "Enter the Engineer's Github username:",
+      name: "github",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter a valid username");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "Enter the Engineer's ID #:",
+      name: "id",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter a valid ID number");
+        }
+        return true;
+      },
+    },
+  ])
 
-//     .then((data) => {
-//       // Making a variable that calls the README content
-//       const template = managerPrompt(data); // unsure what this hw will call
+  .then((data) => {
+    const name = data.name;
+    const email = data.email;
+    const github = data.github;
+    const id = data.id;
 
-//       // This creates the new README file (arg1: file name,
-//       // arg2 data used to "fill" file, arg3 is if error).
-//       fs.writeFile("main.html", template, (err) =>
-//         err ? console.log(err) : console.log("Success!")
-//       );
-//     });
+    const member = new Manager(name, email, github, id);
+    console.log(member);
+  });
 // });
 
-// // This is the intern prompt
+// CURRENTLY PROMPTING AT SAME TIME AS MANAGER This is the intern prompt
 // internPrompt(() => {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         message: "Enter the Intern's name: ",
-//         name: "name",
-//         validate: function (input) {
-//           if (input == " ") {
-//             console.log("Please enter a valid name");
-//           }
-//           return true;
-//         },
-//       },
-//       {
-//         type: "input",
-//         message: "Enter the Intern's email address: ",
-//         name: "email",
-//         validate: function (input) {
-//           if (input == " ") {
-//             console.log("Please enter valid email");
-//           }
-//           return true;
-//         },
-//       },
-//       {
-//         type: "input",
-//         message: "Enter the name of the school the Intern attended:",
-//         name: "school",
-//         validate: function (input) {
-//           if (input == " ") {
-//             console.log("Please enter a valid school");
-//           }
-//           return true;
-//         },
-//       },
-//     ])
+inquirer
+  .prompt([
+    {
+      type: "input",
+      message: "Enter the Intern's name: ",
+      name: "name",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter a valid name");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "Enter the Intern's email address: ",
+      name: "email",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter valid email");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "Enter the name of the school the Intern attended:",
+      name: "school",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter a valid school");
+        }
+        return true;
+      },
+    },
+    {
+      type: "input",
+      message: "Enter the Intern's ID #:",
+      name: "id",
+      validate: function (input) {
+        if (input == " ") {
+          console.log("Please enter a valid ID number");
+        }
+        return true;
+      },
+    },
+  ])
 
-//     .then((data) => {
-//       // Making a variable that calls the README content
-//       const template = managerPrompt(data); // unsure what this hw will call
+  .then((data) => {
+    const name = data.name;
+    const email = data.email;
+    const school = data.school;
+    const id = data.id;
 
-//       // This creates the new README file (arg1: file name,
-//       // arg2 data used to "fill" file, arg3 is if error).
-//       fs.writeFile("main.html", template, (err) =>
-//         err ? console.log(err) : console.log("Success!")
-//       );
-//     });
+    const member = new Manager(name, email, school, id);
+    console.log(member);
+  });
 // });
-
-// managerPrompt();
