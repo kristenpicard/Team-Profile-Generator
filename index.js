@@ -1,6 +1,6 @@
 // Know I'll need each of these requires to work
 const inquirer = require("inquirer");
-const jest = require("jest");
+const Employee = require("./lib/Employee.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
