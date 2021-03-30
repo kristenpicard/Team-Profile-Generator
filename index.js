@@ -5,10 +5,9 @@ const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
 
-// let myTeam = [
-//Want to append teammates?];
+// let myTeam = [];
 
-// Uses inquirer to prompt the user with starting manager ?s
+// First prompt to gather Manager information, then calls add teammate to gather next person's info
 function managerPrompt() {
   inquirer
     .prompt([
@@ -78,7 +77,7 @@ function managerPrompt() {
     });
 }
 
-// CURRENTLY PROMPTING AT SAME TIME AS MANAGER This is the engineer prompt
+// Prompts to gather info for Engineer
 function engineerPrompt() {
   inquirer
     .prompt([
@@ -144,7 +143,7 @@ function engineerPrompt() {
     });
 }
 
-// CURRENTLY PROMPTING AT SAME TIME AS MANAGER This is the intern prompt
+// Prompts to gather info for Intern
 function internPrompt() {
   inquirer
     .prompt([
@@ -210,10 +209,7 @@ function internPrompt() {
     });
 }
 
-function renderTeam() {
-  console.log("it worked");
-}
-
+// This checks whether or not to add another member or render page
 function addTeammate() {
   inquirer
     .prompt([
@@ -236,5 +232,9 @@ function addTeammate() {
       }
     });
 }
-
+// Currently just console logs,  Eventually write to HTML
+function renderTeam() {
+  console.log("it worked");
+}
+// Calls original prompt
 managerPrompt();
