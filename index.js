@@ -267,15 +267,37 @@ function renderPage() {
           <p class="card-text">Name: ${myTeam[i].name}</p>
           <p class="card-text">Email: ${myTeam[i].email}</p>
           <p class="card-text">Id: ${myTeam[i].id}</p>
-          </div>
+        </div>
+      </div>
+      
+      `;
+    if (myTeam[i].onumber) {
+      midTemplate += `
+      <p class="card-text">Office Number: ${myTeam[i].onumber}</p>
+      </div>
       </div>
       `;
+    }
+    if (myTeam[i].github) {
+      midTemplate += `
+      <p class="card-text">GitHub: <a href="https://github.com/${myTeam[i].github}"></a>${myTeam[i].github}</p>
+      </div>
+      </div>
+      `;
+    }
+    if (myTeam[i].school) {
+      midTemplate += `
+      <p class="card-text">School: ${myTeam[i].school}</p>
+      </div>
+      </div>
+      `;
+    }
     // Pushes these cards to the full HTML array
     fullHtml.push(midTemplate);
   }
   // This is the final HTML piece
   const endTemplate = ` 
-    
+  
 </body>
 </html>`;
   // Pushes this end piece to the full HTML array
