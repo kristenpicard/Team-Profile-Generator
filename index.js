@@ -229,35 +229,55 @@ function addTeammate() {
       if (data.choice == "Intern") {
         internPrompt();
       } else {
-        renderTeam();
+        renderPage();
       }
     });
 }
 // Currently just console logs,  Eventually write to HTML
-function renderTeam() {
+function renderPage() {
   console.log("it worked");
-  const template = `
-        <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css" type="text/css">
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>User Data</h1>
-        <div class="name">User name: </div>
+  function beginHTML() {
+    const beginTemplate = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Team Profile</title>
+    <style></style>
+    <div class="page-header">
+        <h1>Team Profile:</h1>
+    </div>
+</head>
+<body>
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
         
-
-    </body>
-    </html>
     `;
 
-  fs.writeFile("index.html", template, (err) =>
-    err ? console.log(err) : console.log("Success!")
-  );
+    fs.writeFile("index.html", beginTemplate, (err) =>
+      err ? console.log(err) : console.log("Success!")
+    );
+  }
+
+  function finishHtml() {
+    const endTemplate = ` 
+    
+</body>
+</html>`;
+
+    fs.appendFile("index.html", endTemplate, (err) =>
+      err ? console.log(err) : console.log("Success!")
+    );
+  }
+  beginHTML();
+  finishHtml();
 }
 
 // Calls original prompt
