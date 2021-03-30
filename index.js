@@ -1,5 +1,6 @@
 // Know I'll need each of these requires to work
 const inquirer = require("inquirer");
+const fs = require("fs");
 const Employee = require("./lib/Employee.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
@@ -235,6 +236,29 @@ function addTeammate() {
 // Currently just console logs,  Eventually write to HTML
 function renderTeam() {
   console.log("it worked");
+  const template = `
+        <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>User Data</h1>
+        <div class="name">User name: </div>
+        
+
+    </body>
+    </html>
+    `;
+
+  fs.writeFile("index.html", template, (err) =>
+    err ? console.log(err) : console.log("Success!")
+  );
 }
+
 // Calls original prompt
 managerPrompt();
