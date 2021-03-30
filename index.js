@@ -210,7 +210,7 @@ function internPrompt() {
     });
 }
 
-// This checks whether or not to add another member or render page
+// This checks whether or not to add another member or if not, render page
 function addTeammate() {
   inquirer
     .prompt([
@@ -234,11 +234,12 @@ function addTeammate() {
     });
 }
 
-// Currently just console logs,  Eventually write to HTML
+// Once all members added, this function creates the HTML mock up and writes it to an HTML file
 function renderPage() {
-  console.log("it worked");
-  function beginHTML() {
-    const beginTemplate = `
+  // Created this array to push the HTML pieces to
+  let fullHtml = [];
+  // Top of HMTL
+  const beginTemplate = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -253,43 +254,37 @@ function renderPage() {
     </div>
 </head>
 <body>
-    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
+    
+    `;
+  // Pushes this into the full HTML array
+  fullHtml.push(beginTemplate);
+  // Loops through the team array to build the team cards
+  for (i = 0; i < myTeam.length; i++) {
+    let midTemplate = `
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Role: ${myTeam[i].role}</div>
         <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+          <p class="card-text">Name: ${myTeam[i].name}</p>
+          <p class="card-text">Email: ${myTeam[i].email}</p>
+          <p class="card-text">Id: ${myTeam[i].id}</p>
+          </div>
       </div>
-        
-    `;
-
-    fs.writeFile("index.html", beginTemplate, (err) =>
-      err ? console.log(err) : console.log("Success!")
-    );
+      `;
+    // Pushes these cards to the full HTML array
+    fullHtml.push(midTemplate);
   }
-  function middleHtml() {
-    const midTemplate = ` 
-    HERE NEED TO FILL WITH ROLE INFORMATION
-    `;
-
-    fs.appendFile("index.html", midTemplate, (err) =>
-      err ? console.log(err) : console.log("Success!")
-    );
-  }
-  function finishHtml() {
-    const endTemplate = ` 
+  // This is the final HTML piece
+  const endTemplate = ` 
     
 </body>
 </html>`;
-
-    fs.appendFile("index.html", endTemplate, (err) =>
-      err ? console.log(err) : console.log("Success!")
-    );
-  }
-  beginHTML();
-  middleHtml();
-  finishHtml();
-  console.log(myTeam);
+  // Pushes this end piece to the full HTML array
+  fullHtml.push(endTemplate);
+  // Uses fs library to write to the index.html file. Need .join to change array to string.
+  fs.writeFile("index.html", fullHtml.join(""), (err) =>
+    err ? console.log(err) : console.log("Success!")
+  );
 }
 
-// Calls original prompt
+// Calls starting Manager prompt
 managerPrompt();
