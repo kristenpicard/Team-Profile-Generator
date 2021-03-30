@@ -6,7 +6,7 @@ const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
 
-// let myTeam = [];
+let myTeam = [];
 
 // First prompt to gather Manager information, then calls add teammate to gather next person's info
 function managerPrompt() {
@@ -73,7 +73,7 @@ function managerPrompt() {
       const id = data.id;
 
       const member = new Manager(name, email, onumber, id);
-      console.log(member);
+      myTeam.push(member);
       addTeammate();
     });
 }
@@ -139,7 +139,7 @@ function engineerPrompt() {
       const id = data.id;
 
       const member = new Engineer(name, email, github, id);
-      console.log(member);
+      myTeam.push(member);
       addTeammate();
     });
 }
@@ -205,7 +205,7 @@ function internPrompt() {
       const id = data.id;
 
       const member = new Intern(name, email, school, id);
-      console.log(member);
+      myTeam.push(member);
       addTeammate();
     });
 }
@@ -233,6 +233,7 @@ function addTeammate() {
       }
     });
 }
+
 // Currently just console logs,  Eventually write to HTML
 function renderPage() {
   console.log("it worked");
@@ -265,7 +266,15 @@ function renderPage() {
       err ? console.log(err) : console.log("Success!")
     );
   }
+  function middleHtml() {
+    const midTemplate = ` 
+    HERE NEED TO FILL WITH ROLE INFORMATION
+    `;
 
+    fs.appendFile("index.html", midTemplate, (err) =>
+      err ? console.log(err) : console.log("Success!")
+    );
+  }
   function finishHtml() {
     const endTemplate = ` 
     
@@ -277,7 +286,9 @@ function renderPage() {
     );
   }
   beginHTML();
+  middleHtml();
   finishHtml();
+  console.log(myTeam);
 }
 
 // Calls original prompt
