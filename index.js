@@ -6,6 +6,7 @@ const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 const Manager = require("./lib/Manager.js");
 
+// Empty array that will be filled with the team members as the user chooses them
 let myTeam = [];
 
 // First prompt to gather Manager information, then calls add teammate to gather next person's info
@@ -219,6 +220,13 @@ function addTeammate() {
         message: "Would you like to add another team member?",
         name: "choice",
         choices: ["Engineer", "Intern", "No, team complete"],
+        validate: function (input) {
+          if (input == " ") {
+            console.log("Please choose another teammate or to complete team");
+            return false;
+          }
+          return true;
+        },
       },
     ])
 
@@ -228,7 +236,8 @@ function addTeammate() {
       }
       if (data.choice == "Intern") {
         internPrompt();
-      } else {
+      }
+      if (data.choice == "No, team complete") {
         renderPage();
       }
     });
