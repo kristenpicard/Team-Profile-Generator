@@ -269,7 +269,7 @@ function renderPage() {
         <div class="card-header">Role: ${myTeam[i].role}</div>
         <div class="card-body">
           <p class="card-text">Name: ${myTeam[i].name}</p>
-          <p class="card-text">Email: ${myTeam[i].email}</p>
+          <p class="card-text">Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
           <p class="card-text">Id: ${myTeam[i].id}</p>
           <p class="card-text">Office Number: ${myTeam[i].officeN}</p>
         </div>
@@ -283,9 +283,9 @@ function renderPage() {
         <div class="card-header">Role: ${myTeam[i].role}</div>
         <div class="card-body">
           <p class="card-text">Name: ${myTeam[i].name}</p>
-          <p class="card-text">Email: ${myTeam[i].email}</p>
+          <p class="card-text">Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
           <p class="card-text">Id: ${myTeam[i].id}</p>
-          <p class="card-text">GitHub: <a href="https://github.com/${myTeam[i].github}"></a>${myTeam[i].github}</p>
+          <p class="card-text">GitHub: <a href="https://github.com/${myTeam[i].github}" target="_blank">${myTeam[i].github}</a></p>
           </div>
       </div>
       `;
@@ -297,7 +297,7 @@ function renderPage() {
         <div class="card-header">Role: ${myTeam[i].role}</div>
         <div class="card-body">
           <p class="card-text">Name: ${myTeam[i].name}</p>
-          <p class="card-text">Email: ${myTeam[i].email}</p>
+          <p class="card-text">Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
           <p class="card-text">Id: ${myTeam[i].id}</p>
           <p class="card-text">School: ${myTeam[i].school}</p>
           </div>
