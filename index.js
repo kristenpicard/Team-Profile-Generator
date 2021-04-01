@@ -42,18 +42,6 @@ function managerPrompt() {
       },
       {
         type: "input",
-        message: "Enter the Manager's Office #:",
-        name: "onumber",
-        validate: function (input) {
-          if (input == " ") {
-            console.log("Please enter a valid office number");
-            return false;
-          }
-          return true;
-        },
-      },
-      {
-        type: "input",
         message: "Enter the Manager's ID #:",
         name: "id",
         validate: function (input) {
@@ -64,15 +52,27 @@ function managerPrompt() {
           return true;
         },
       },
+      {
+        type: "input",
+        message: "Enter the Manager's Office #:",
+        name: "onumber",
+        validate: function (input) {
+          if (input == " ") {
+            console.log("Please enter a valid office number");
+            return false;
+          }
+          return true;
+        },
+      },
     ])
 
     .then((data) => {
       const name = data.name;
       const email = data.email;
-      const onumber = data.onumber;
       const id = data.id;
+      const onumber = data.onumber;
 
-      const member = new Manager(name, email, onumber, id);
+      const member = new Manager(name, email, id, onumber);
       myTeam.push(member);
       addTeammate();
     });
@@ -108,18 +108,6 @@ function engineerPrompt() {
       },
       {
         type: "input",
-        message: "Enter the Engineer's Github username:",
-        name: "github",
-        validate: function (input) {
-          if (input == " ") {
-            console.log("Please enter a valid username");
-            return false;
-          }
-          return true;
-        },
-      },
-      {
-        type: "input",
         message: "Enter the Engineer's ID #:",
         name: "id",
         validate: function (input) {
@@ -130,15 +118,27 @@ function engineerPrompt() {
           return true;
         },
       },
+      {
+        type: "input",
+        message: "Enter the Engineer's Github username:",
+        name: "github",
+        validate: function (input) {
+          if (input == " ") {
+            console.log("Please enter a valid username");
+            return false;
+          }
+          return true;
+        },
+      },
     ])
 
     .then((data) => {
       const name = data.name;
       const email = data.email;
-      const github = data.github;
       const id = data.id;
+      const github = data.github;
 
-      const member = new Engineer(name, email, github, id);
+      const member = new Engineer(name, email, id, github);
       myTeam.push(member);
       addTeammate();
     });
@@ -174,18 +174,6 @@ function internPrompt() {
       },
       {
         type: "input",
-        message: "Enter the name of the school the Intern attended:",
-        name: "school",
-        validate: function (input) {
-          if (input == " ") {
-            console.log("Please enter a valid school");
-            return false;
-          }
-          return true;
-        },
-      },
-      {
-        type: "input",
         message: "Enter the Intern's ID #:",
         name: "id",
         validate: function (input) {
@@ -196,15 +184,27 @@ function internPrompt() {
           return true;
         },
       },
+      {
+        type: "input",
+        message: "Enter the name of the school the Intern attended:",
+        name: "school",
+        validate: function (input) {
+          if (input == " ") {
+            console.log("Please enter a valid school");
+            return false;
+          }
+          return true;
+        },
+      },
     ])
 
     .then((data) => {
       const name = data.name;
       const email = data.email;
-      const school = data.school;
       const id = data.id;
+      const school = data.school;
 
-      const member = new Intern(name, email, school, id);
+      const member = new Intern(name, email, id, school);
       myTeam.push(member);
       addTeammate();
     });
@@ -260,35 +260,47 @@ function renderPage() {
   fullHtml.push(beginTemplate);
   // Loops through the team array to build the team cards
   for (i = 0; i < myTeam.length; i++) {
-    let midTemplate = `
+    // Setting a variable with which to add the various teammate HTML into
+    let midTemplate = ``;
+    // Tells what HTML to add for the manager user input
+    if (myTeam[i].role == "Manager") {
+      midTemplate += `
       <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
         <div class="card-header">Role: ${myTeam[i].role}</div>
         <div class="card-body">
           <p class="card-text">Name: ${myTeam[i].name}</p>
           <p class="card-text">Email: ${myTeam[i].email}</p>
           <p class="card-text">Id: ${myTeam[i].id}</p>
+          <p class="card-text">Office Number: ${myTeam[i].officeN}</p>
         </div>
       </div>
-      
       `;
-    if (myTeam[i].onumber) {
+    }
+    // Tells what HTML to add for the Engineer user input
+    if (myTeam[i].role == "Engineer") {
       midTemplate += `
-      <p class="card-text">Office Number: ${myTeam[i].onumber}</p>
-      </div>
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Role: ${myTeam[i].role}</div>
+        <div class="card-body">
+          <p class="card-text">Name: ${myTeam[i].name}</p>
+          <p class="card-text">Email: ${myTeam[i].email}</p>
+          <p class="card-text">Id: ${myTeam[i].id}</p>
+          <p class="card-text">GitHub: <a href="https://github.com/${myTeam[i].github}"></a>${myTeam[i].github}</p>
+          </div>
       </div>
       `;
     }
-    if (myTeam[i].github) {
+    // Tells what HTML to add for the Engineer user input
+    if (myTeam[i].role == "Intern") {
       midTemplate += `
-      <p class="card-text">GitHub: <a href="https://github.com/${myTeam[i].github}"></a>${myTeam[i].github}</p>
-      </div>
-      </div>
-      `;
-    }
-    if (myTeam[i].school) {
-      midTemplate += `
-      <p class="card-text">School: ${myTeam[i].school}</p>
-      </div>
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Role: ${myTeam[i].role}</div>
+        <div class="card-body">
+          <p class="card-text">Name: ${myTeam[i].name}</p>
+          <p class="card-text">Email: ${myTeam[i].email}</p>
+          <p class="card-text">Id: ${myTeam[i].id}</p>
+          <p class="card-text">School: ${myTeam[i].school}</p>
+          </div>
       </div>
       `;
     }
@@ -297,7 +309,6 @@ function renderPage() {
   }
   // This is the final HTML piece
   const endTemplate = ` 
-  
 </body>
 </html>`;
   // Pushes this end piece to the full HTML array
