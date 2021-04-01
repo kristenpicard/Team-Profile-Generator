@@ -249,21 +249,57 @@ function renderPage() {
   let fullHtml = [];
   // Top of HMTL
   const beginTemplate = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Team Profile</title>
-    <style></style>
-    <div class="page-header">
-        <h1>Team Profile:</h1>
-    </div>
-</head>
-<body>
-    
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <title>Team Profile</title>
+      <style>
+          body {
+            padding: 4.5rem;
+            margin: 0;
+            background: linear-gradient(90deg, #f7c3eb 0, #b9f0dd 60%);
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+          }
+          h1 {
+            text-align: center;
+            color: #f862d5;
+          }
+          .card {
+            width: 300px;
+            height: auto;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            float: left;
+          }
+          .card-header {
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f862d5;
+          }
+          p {
+            color: #f862d5;
+          }
+          a {
+            color: #0db87c;
+            text-decoration: none;
+            font-size: 1rem;
+          }
+      </style>
+      <div class="page-header">
+          <h1>Team Profile:</h1>
+      </div>
+  </head>
+  <body>
     `;
   // Pushes this into the full HTML array
   fullHtml.push(beginTemplate);
@@ -274,43 +310,37 @@ function renderPage() {
     // Tells what HTML to add for the manager user input
     if (myTeam[i].role == "Manager") {
       midTemplate += `
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Role: ${myTeam[i].role}</div>
-        <div class="card-body">
-          <p class="card-text">Name: ${myTeam[i].name}</p>
-          <p class="card-text">Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
-          <p class="card-text">Id: ${myTeam[i].id}</p>
-          <p class="card-text">Office Number: ${myTeam[i].officeN}</p>
-        </div>
-      </div>
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">Role: ${myTeam[i].role}</div>
+      <p>Name: ${myTeam[i].name}</p>
+      <p>Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
+      <p>Id: ${myTeam[i].id}</p>
+      <p>Office Number: ${myTeam[i].officeN}</p>
+  </div>
       `;
     }
     // Tells what HTML to add for the Engineer user input
     if (myTeam[i].role == "Engineer") {
       midTemplate += `
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Role: ${myTeam[i].role}</div>
-        <div class="card-body">
-          <p class="card-text">Name: ${myTeam[i].name}</p>
-          <p class="card-text">Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
-          <p class="card-text">Id: ${myTeam[i].id}</p>
-          <p class="card-text">GitHub: <a href="https://github.com/${myTeam[i].github}" target="_blank">${myTeam[i].github}</a></p>
-          </div>
-      </div>
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">Role: ${myTeam[i].role}</div>
+      <p>Name: ${myTeam[i].name}</p>
+      <p>Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
+      <p>Id: ${myTeam[i].id}</p>
+      <p>GitHub: <a href="https://github.com/${myTeam[i].github}" target="_blank">${myTeam[i].github}</a></p>
+  </div>
       `;
     }
     // Tells what HTML to add for the Engineer user input
     if (myTeam[i].role == "Intern") {
       midTemplate += `
-      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-        <div class="card-header">Role: ${myTeam[i].role}</div>
-        <div class="card-body">
-          <p class="card-text">Name: ${myTeam[i].name}</p>
-          <p class="card-text">Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
-          <p class="card-text">Id: ${myTeam[i].id}</p>
-          <p class="card-text">School: ${myTeam[i].school}</p>
-          </div>
-      </div>
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    <div class="card-header">Role: ${myTeam[i].role}</div>
+      <p>Name: ${myTeam[i].name}</p>
+      <p>Email: <a href="mailto:${myTeam[i].email}" target="_blank">${myTeam[i].email}</a></p>
+      <p>Id: ${myTeam[i].id}</p>
+      <p>School: ${myTeam[i].school}</p>
+  </div>
       `;
     }
     // Pushes these cards to the full HTML array
