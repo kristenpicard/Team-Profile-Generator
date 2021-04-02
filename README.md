@@ -42,9 +42,9 @@ https://github.com/kristenpicard
 
 ## Tests
 
-![Demo:](1.gif)
+![Demo:](/img/1.gif)
 
-[Click here to view a video that demonstrates the applications functionality](https://drive.google.com/file/d/1JfCjUB4fIN2Sn4vjQ2cKJ1zuZggXs2rM/view)
+[Click here to view a video that demonstrates the applications functionality](https://drive.google.com/file/d/1byHtOAQGtUakIc1F4qWU8T6G_nsAP2Ko/view?usp=sharing)
 
 ## Questions
 
